@@ -23,8 +23,8 @@ public class CardService {
         Card existingCard = cardRepository.findById(cardId).get();
         if (existingCard != null){
             existingCard.setCardCsv(card.getCardCsv());
-            existingCard.setCardHolderName(card.getCardHolderName());
-            existingCard.setCardNumber(card.getCardNumber());
+            existingCard.setCardHolderName(encodeCardDetails(card.getCardHolderName()));
+            existingCard.setCardNumber(encodeCardDetails(card.getCardNumber()));
             existingCard.setExpirationDate(card.getExpirationDate());
         }
         return cardRepository.save(existingCard);
