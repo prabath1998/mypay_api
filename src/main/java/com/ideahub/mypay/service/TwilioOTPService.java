@@ -21,6 +21,8 @@ public class TwilioOTPService {
     private OTPConfig twilioConfig;
 
     Map<String,String> otpMap = new HashMap<>();
+
+    //Sent OTP to user
     public Mono<OTPResponse> sendOtpToUser(OTPRequest otpDto){
         OTPResponse otpResponse = null;
         try {
@@ -46,6 +48,7 @@ public class TwilioOTPService {
                 .format(new Random().nextInt(999999));
     }
 
+    //Validate OTP number
     public Mono<String> validateOTP(String userInputOtp,String userName){
         if (userInputOtp.equals(otpMap.get(userName))){
             return Mono.just("Valid OTP");
